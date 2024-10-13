@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        #perent_div{
+            background-image: url(https://cdn.pixabay.com/photo/2020/10/06/05/31/woman-5631257_1280.jpg);
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 800px;
+            
+        }
+
+        #rgs_btn{
+            display: flex;
+            margin-left: 5%;
+            padding-top: 20px;
+        }
+        html {
+        height: 100%;
+        }
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(40, 5, 62, 0.827);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.679);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+       #table{
+        margin-top: 30%;
+        width: 50%;
+        margin-left: 25%;
+       }
+    </style>
+</head>
+<body id="perent_div">
+
+   <div>
+
+    <div align="center" style="margin: 50px;">
+        <h1>You Are Wellcome</h1>
+        <h5>{{data.nm}}</h5>
+    </div>
+
+    <div align="center">
+
+        <div class="login-box">
+            <h2>Ask Your Queys</h2>
+            <div style="color: green;">{{msg}}</div>
+        <form action="{% url 'query' %}" method="post">
+
+          {% csrf_token %}
+
+          <div class="user-box">
+            <input type="" name="name" value={{data.nm}} readonly required>
+            <!-- <label>Name</label> -->
+          </div>
+
+            <div class="user-box">
+                <input type="email" name="email" value={{data.em}} readonly required>
+                <!-- <label>Email</label> -->
+              </div>
+              <div class="user-box">
+                <input type="text" name="query" required>
+                <label>Query</label>
+                
+              </div>
+
+              <button class="btn btn-outline-light">Submit</button>
+        </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table table-hover" id="table" border="1">
+        <thead>
+          <tr>
+            <th scope="col">S No.</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Query</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+            
+          </tr>
+        </thead>
+        {% for i in key1 %}
+
+        <tbody>
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.id}}</td>
+            <td>{{i.cust_name}}</td>
+            <td>{{i.cust_email}}</td>
+            <td>{{i.cust_query}}</td>
+            <td><a href="#">Edit</a></td>
+            <td><a href="#">Delete</a></td>
+          </tr>
+          
+        </tbody>
+        {% endfor %}
+    </table>
+
+</div>
+    {{key1.nm}}
+</body>
+</html>

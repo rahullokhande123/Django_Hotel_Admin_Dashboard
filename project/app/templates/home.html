@@ -165,19 +165,22 @@
 
         <div class="login-box">
             <h2>Login</h2>
+            <div style="color: green;">{{msg}}</div>
         <form action="{% url 'login' %}" method="post">
 
           {% csrf_token %}
 
             <div class="user-box">
-                <input type="text" name="" required="">
+                <input type="email" name="email" required>
                 <label>Email</label>
               </div>
               <div class="user-box">
-                <input type="password" name="" required="">
+                <input type="password" name="password" required>
                 <label>Password</label>
-                <button type="button" class="btn btn-outline-light">Sign In</button>
+                
               </div>
+
+              <button class="btn btn-outline-light">Sign In</button>
         </form>
         </div>
     </div>
