@@ -159,7 +159,9 @@ def edit(request,x):
     print(my_data)
 
     all_query=Query.objects.filter(cust_email=email1)
-    # edit_data={
-    #     'qe':query1
-    # }
-    return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+    edit_data={
+        'em':email1,
+        'nm':name1,
+        'qu':query1
+    }
+    return render(request, 'querys.html',{'key1':all_query,'data':my_data,'key2':edit_data})

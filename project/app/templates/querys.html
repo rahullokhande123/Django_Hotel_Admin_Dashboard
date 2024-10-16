@@ -17,7 +17,7 @@
         <h1>{{data.nm}}</h1>
     </div>
 
-{% if key1 %}
+{% if key2 %}
 
 <table class="table table-hover" id="table" border="2">
         <thead>
@@ -49,6 +49,61 @@
         {% endfor %}
     </table>
 
+    {% comment %} ================================== Edit Form ===================================== {% endcomment %}
+
+<div align="center" style="margin-top: 50px;">
+<form style="width: 26rem;">
+  <!-- Name input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form4Example1">Name</label>
+    <input type="text" value={{key2.nm}} id="form4Example1" class="form-control" />
+    
+  </div>
+
+  <!-- Email input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form4Example2">Email address</label>
+    <input type="email" value={{key2.em}} id="form4Example2" class="form-control" />
+    
+  </div>
+
+  <!-- Message input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form4Example3">Message</label>
+    <textarea class="form-control" aria-valuetext={{key2.qu}} id="form4Example3" rows="4"></textarea>
+    
+  </div>
+
+  <!-- Checkbox -->
+  <div class="form-check d-flex justify-content-center mb-4">
+    <input
+      class="form-check-input me-2"
+      type="checkbox"
+      value=""
+      id="form4Example4"
+      checked
+    />
+    <label class="form-check-label" for="form4Example4">
+      Are you sure, you want to update
+    </label>
+  </div>
+
+  <!-- Submit button -->
+  <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Update</button>
+</form>
+
+</div>
+
+
+{% comment %} ============================== JavaScript ============================== {% endcomment %}
+
+<script>
+  // Initialization for ES Users
+import { Input, Ripple, initMDB } from "mdb-ui-kit";
+
+initMDB({ Input, Ripple });
+</script>
+
 {% else %}
 
 <table class="table table-hover" id="table" border="2">
@@ -72,7 +127,7 @@
             <td>{{i.id}}</td>
             <td>{{i.cust_name}}</td>
             <td>{{i.cust_email}}</td>
-            <td>{{i.cust_query}}</td>
+            <td>ksdfjlksjflksj</td>
             <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
             <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a></td>
           </tr>
@@ -80,4 +135,5 @@
         </tbody>
         {% endfor %}
     </table>
+
 {% endif %}
