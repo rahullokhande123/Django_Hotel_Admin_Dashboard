@@ -51,26 +51,27 @@
 
     {% comment %} ================================== Edit Form ===================================== {% endcomment %}
 
+    
 <div align="center" style="margin-top: 50px;">
 <form style="width: 26rem;">
   <!-- Name input -->
   <div data-mdb-input-init class="form-outline mb-4">
     <label class="form-label" for="form4Example1">Name</label>
-    <input type="text" value={{key2.nm}} id="form4Example1" class="form-control" />
+    <input type="text" value="{{key2.nm}}" name="name" id="form4Example1" readonly class="form-control" />
     
   </div>
 
   <!-- Email input -->
   <div data-mdb-input-init class="form-outline mb-4">
     <label class="form-label" for="form4Example2">Email address</label>
-    <input type="email" value={{key2.em}} id="form4Example2" class="form-control" />
+    <input type="email" value={{key2.em}} id="form4Example2" readonly class="form-control" />
     
   </div>
 
   <!-- Message input -->
   <div data-mdb-input-init class="form-outline mb-4">
     <label class="form-label" for="form4Example3">Message</label>
-    <textarea class="form-control" aria-valuetext={{key2.qu}} id="form4Example3" rows="4"></textarea>
+    <textarea class="form-control"  id="form4Example3" rows="4">{{key2.qu}}</textarea>
     
   </div>
 
@@ -81,7 +82,7 @@
       type="checkbox"
       value=""
       id="form4Example4"
-      checked
+      required
     />
     <label class="form-check-label" for="form4Example4">
       Are you sure, you want to update
@@ -127,7 +128,7 @@ initMDB({ Input, Ripple });
             <td>{{i.id}}</td>
             <td>{{i.cust_name}}</td>
             <td>{{i.cust_email}}</td>
-            <td>ksdfjlksjflksj</td>
+            <td>{{i.cust_query}}</td>
             <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
             <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a></td>
           </tr>
