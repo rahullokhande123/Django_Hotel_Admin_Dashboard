@@ -9,10 +9,10 @@
 
     <style>
         #perent_div{
-            background-image: url(https://cdn.pixabay.com/photo/2020/10/06/05/31/woman-5631257_1280.jpg);
+            background-image: url(https://cdn.pixabay.com/photo/2019/07/29/05/56/resort-4369984_1280.jpg);
             background-repeat: no-repeat;
-            width: 100%;
-            height: 800px;
+            background-size: cover;
+            height: 750px;
             
         }
 
@@ -27,7 +27,7 @@
 
 .login-box {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   width: 50%;
   
@@ -104,38 +104,60 @@
 <body id="perent_div">
 
    <div>
+  <!-- ===================================== Query Button ================================ -->
+    <div style="margin-top: 2%;">
+      <form action="{% url 'querydata' x=data.em %}" method="post">
+      {% csrf_token %}
+        <button style="margin-left: 50px;" class="btn btn-outline-dark">Querys</button>
+      </form>
+    </div>
 
+  <!-- =================================================================================== -->
     <div align="center" style="margin: 50px;">
         <h1>You Are Wellcome</h1>
         <h5>{{data.nm}}</h5>
     </div>
 
-    <div align="center">
+    <div align="center" style="display: block;">
 
-        <div class="login-box">
-            <h2>Ask Your Queys</h2>
-            <div style="color: green;">{{msg}}</div>
-        <form action="{% url 'query' %}" method="post">
+        <div style="display: block;">
 
-          {% csrf_token %}
+            <div class="login-box">
+                <h2>Ask Your Queys</h2>
+                <div style="color: green;">{{msg}}</div>
+                 <div style="margin-top: 2%;">
+    {% comment %} <div>
+      <form action="{% url 'querydata' x=data.em %}" method="post">
+        <button style="margin-left: 50px;" class="btn btn-outline-dark">Querys</button>
+      </form>
+    </div> {% endcomment %}
 
-          <div class="user-box">
-            <input type="" name="name" value={{data.nm}} readonly required>
-            <!-- <label>Name</label> -->
-          </div>
-
-            <div class="user-box">
-                <input type="email" name="email" value={{data.em}} readonly required>
-                <!-- <label>Email</label> -->
-              </div>
+            <form action="{% url 'query' %}" method="post">
+              {% csrf_token %}
+              {% comment %} <div class="user-box">
+                <input type="" name="name" value={{data.nm}} readonly>
+                <!-- <label>Name</label> -->
+              </div> {% endcomment %}
               <div class="user-box">
-                <input type="text" name="query" required>
-                <label>Query</label>
-                
+                <input type="text" name="name" value={{data.nm}} readonly>
+                <!-- <label>Name</label> -->
               </div>
+    
+                <div class="user-box">
+                    <input type="email" name="email" value={{data.em}} readonly>
+                    <!-- <label>Email</label> -->
+                  </div>
+                  <div class="user-box">
+                    <input type="text" name="query" required>
+                    <label>Query</label>
+                    
+                  </div>
+    
+                  <button class="btn btn-outline-light">Submit</button>
+            </form>
+            </div>
 
-              <button class="btn btn-outline-light">Submit</button>
-        </form>
+            
         </div>
     </div>
 
@@ -150,7 +172,7 @@
 
 
 
-    <table class="table table-hover" id="table" border="1">
+    <!-- <table class="table table-hover" id="table" border="1">
         <thead>
           <tr>
             <th scope="col">S No.</th>
@@ -180,7 +202,7 @@
         {% endfor %}
     </table>
 
-</div>
-    {{key1.nm}}
+</div> -->
+
 </body>
 </html>

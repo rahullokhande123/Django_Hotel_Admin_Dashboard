@@ -70,6 +70,7 @@ def login(request):
     else:
         return render(request,'home.html')
     
+    
 def query(request):
     if request.method=="POST":
         name=request.POST['name']
@@ -89,10 +90,76 @@ def query(request):
         print(my_data)
         all_query=Query.objects.filter(cust_email=email)
         return render(request, 'dashboard.html',{'key1':all_query,'data':my_data})
+        print(all_query)
    
     else:
         return render(request,'dashboard.html')
     
 def querydata(request,x):
-    queryData=Query.objects.filter(id=x)
+    queryData=Query.objects.filter(cust_email=x)
     print(queryData)
+
+    user_data=Customers.objects.get(cust_email=x)
+    my_data={
+            'nm':user_data.cust_name,
+            'em':user_data.cust_email,
+            'con':user_data.cust_contact,
+            'pas':user_data.cust_password
+        }
+    print(my_data)
+    all_query=Query.objects.filter(cust_email=x)
+    return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+
+def delete(request,x,y):
+    querydata=Query.objects.filter(id=x)
+    if querydata:
+        querydata=Query.objects.get(id=x)
+        email=querydata.cust_email
+
+        querydata.delete()
+
+        user_data=Customers.objects.get(cust_email=email)
+        my_data={
+            'nm':user_data.cust_name,
+            'em':user_data.cust_email,
+            'con':user_data.cust_contact,
+            'pas':user_data.cust_password
+        }
+        print(my_data)
+        all_query=Query.objects.filter(cust_email=email)
+        return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+    else:
+        user_data=Customers.objects.get(cust_email=y)
+        my_data={
+            'nm':user_data.cust_name,
+            'em':user_data.cust_email,
+            'con':user_data.cust_contact,
+            'pas':user_data.cust_password
+        }
+        print(my_data)
+        all_query=Query.objects.filter(cust_email=y)
+        return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+    
+def edit(request,x):
+    querydata=Query.objects.get(id=x)
+    print(querydata)
+    email1=querydata.cust_email
+    name1=querydata.cust_name
+    query1=querydata.cust_query
+
+    print(query1)
+
+    user_data=Customers.objects.get(cust_email=email1)
+    my_data={
+            'nm':user_data.cust_name,
+            'em':user_data.cust_email,
+            'con':user_data.cust_contact,
+            'pas':user_data.cust_password
+        }
+    print(my_data)
+
+    all_query=Query.objects.filter(cust_email=email1)
+    # edit_data={
+    #     'qe':query1
+    # }
+    return render(request, 'querys.html',{'key1':all_query,'data':my_data})
