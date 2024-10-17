@@ -165,3 +165,9 @@ def edit(request,x):
         'qu':query1
     }
     return render(request, 'querys.html',{'key1':all_query,'data':my_data,'key2':edit_data})
+
+def update(request):
+    # if request.method=="POST":
+
+    # else:
+    return render (request,'querys.html')

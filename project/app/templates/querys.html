@@ -53,7 +53,8 @@
 
     
 <div align="center" style="margin-top: 50px;">
-<form style="width: 26rem;">
+<form style="width: 26rem;" action="{% url 'update' %}" method="post">
+  {% csrf_token %}
   <!-- Name input -->
   <div data-mdb-input-init class="form-outline mb-4">
     <label class="form-label" for="form4Example1">Name</label>
