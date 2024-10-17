@@ -9,6 +9,7 @@ urlpatterns = [
     path('querydata/<str:x>', views.querydata, name='querydata'),
     path('delete/<int:x>/<str:y>', views.delete, name='delete'),
     path('edit/<int:x>', views.edit, name='edit'),
-    path('update/', views.update, name='update') 
+    path('update/', views.update, name='update'),
+    path('logout/', views.logout, name='logout'),
     
 ]

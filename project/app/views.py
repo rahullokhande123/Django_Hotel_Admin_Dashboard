@@ -167,7 +167,31 @@ def edit(request,x):
     return render(request, 'querys.html',{'key1':all_query,'data':my_data,'key2':edit_data})
 
 def update(request):
-    # if request.method=="POST":
+        name1=request.POST['name']
+        email1=request.POST['email']
+        query1=request.POST['query']
 
-    # else:
-    return render (request,'querys.html')
+        print(query1)
+
+        querydata=Query.objects.get(cust_email=email1)
+        querydata.cust_name=name1
+        querydata.cust_email=email1
+        querydata.cust_query=query1
+
+        querydata.save()
+
+        user_data=Customers.objects.get(cust_email=email1)
+        my_data={
+            'nm':user_data.cust_name,
+            'em':user_data.cust_email,
+            'con':user_data.cust_contact,
+            'pas':user_data.cust_password
+            }
+        print(my_data)
+        all_query=Query.objects.filter(cust_email=email1)
+        return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+
+def logout(request):
+    return render (request, 'home.html')
+
+
