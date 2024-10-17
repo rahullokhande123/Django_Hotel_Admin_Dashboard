@@ -40,7 +40,7 @@
             <td>{{i.id}}</td>
             <td>{{i.cust_name}}</td>
             <td>{{i.cust_email}}</td>
-            <td>ksdfjlksjflksj</td>
+            <td>{{i.cust_query}}</td>
             <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
             <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a></td>
           </tr>
@@ -82,7 +82,7 @@
       type="checkbox"
       value=""
       id="form4Example4"
-      required
+      checked
     />
     <label class="form-check-label" for="form4Example4">
       Are you sure, you want to update
@@ -90,7 +90,7 @@
   </div>
 
   <!-- Submit button -->
-  <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Update</button>
+ <a href="#"> <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Update My Query</button></a>
 </form>
 
 </div>
