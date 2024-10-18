@@ -141,13 +141,14 @@ def delete(request,x,y):
         return render(request, 'querys.html',{'key1':all_query,'data':my_data})
     
 def edit(request,x):
+    print(x)
     querydata=Query.objects.get(id=x)
-    print(querydata)
+    # print(querydata)
     email1=querydata.cust_email
     name1=querydata.cust_name
     query1=querydata.cust_query
 
-    print(query1)
+    # print(query1)
 
     user_data=Customers.objects.get(cust_email=email1)
     my_data={
@@ -156,10 +157,11 @@ def edit(request,x):
             'con':user_data.cust_contact,
             'pas':user_data.cust_password
         }
-    print(my_data)
+    # print(my_data)
 
     all_query=Query.objects.filter(cust_email=email1)
     edit_data={
+        'id':x,
         'em':email1,
         'nm':name1,
         'qu':query1
@@ -169,28 +171,28 @@ def edit(request,x):
 def update(request,x):
         if request.method=="POST":
             name1=request.POST['name']
-        email1=request.POST['email']
-        query1=request.POST['query']
+            email1=request.POST['email']
+            query1=request.POST['query']
 
-        print(query1)
+            print(query1)
 
-        querydata=Query.objects.get(id=x)
-        querydata.cust_name=name1
-        querydata.cust_email=email1
-        querydata.cust_query=query1
+            querydata=Query.objects.get(id=x)
+            querydata.cust_name=name1
+            querydata.cust_email=email1
+            querydata.cust_query=query1
 
-        querydata.save()
+            querydata.save()
 
-        user_data=Customers.objects.get(cust_email=email1)
-        my_data={
-            'nm':user_data.cust_name,
-            'em':user_data.cust_email,
-            'con':user_data.cust_contact,
-            'pas':user_data.cust_password
-            }
-        print(my_data)
-        all_query=Query.objects.filter(cust_email=email1)
-        return render(request, 'querys.html',{'key1':all_query,'data':my_data})
+            user_data=Customers.objects.get(cust_email=email1)
+            my_data={
+                'nm':user_data.cust_name,
+                'em':user_data.cust_email,
+                'con':user_data.cust_contact,
+                'pas':user_data.cust_password
+                }
+            print(my_data)
+            all_query=Query.objects.filter(cust_email=email1)
+            return render(request, 'querys.html',{'key1':all_query,'data':my_data})
 
 def logout(request):
     return render (request, 'home.html')
