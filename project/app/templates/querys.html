@@ -4,7 +4,7 @@
     margin: auto;
   }
 
-  #user {
+  #querys {
     margin: 20px;
     color: green;
   }
@@ -16,13 +16,19 @@
   <a href="{% url 'logout' %}"><button style="margin-right: 10px;" type="button"
       class="btn btn-success">LogOut</button></a>
 </div>
-<div align="center" id="user">
-  <h1>{{data.nm}}</h1>
+
+<div style="margin-left: 30px;" id="user1">
+  <b>User : {{data.nm}}</b>
 </div>
+
 <div style="height: 100%;">
   {% if key2 %}
 
-  <table class="table table-hover" id="table" border="2">
+  <div align="center" id="querys">
+    <h1>Update Your Querys</h1>
+  </div>
+
+  <!-- <table class="table table-hover" id="table" border="2">
     <thead>
       <tr>
         <th scope="col">S No.</th>
@@ -51,13 +57,14 @@
 
     </tbody>
     {% endfor %}
-  </table>
+    
+  </table> -->
 
   {% comment %} ================================== Edit Form ===================================== {% endcomment %}
 
 
   <div align="center" style="margin-top: 50px;">
-    <form style="width: 26rem;" action="{% url 'update' %}" method="post">
+    <form style="width: 26rem;" action="{% url 'update' x=key2.id %}" method="post">
       {% csrf_token %}
       <!-- Name input -->
       <div data-mdb-input-init class="form-outline mb-4">
@@ -108,6 +115,14 @@
 
 {% else %}
 
+<div align="center" id="querys">
+  <h1>Your Querys</h1>
+</div>
+
+<div align="center">
+  <img src="https://cdni.iconscout.com/illustration/premium/thumb/dashboard-illustration-download-in-svg-png-gif-file-formats--analytics-logo-analysis-web-development-pack-design-illustrations-2821992.png" alt="">
+</div>
+
 <table class="table table-hover" id="table" border="2">
   <thead>
     <tr>
@@ -141,6 +156,3 @@
 
 {% endif %}
 
-<div align="center">
-  <img src="https://cdni.iconscout.com/illustration/premium/thumb/dashboard-illustration-download-in-svg-png-gif-file-formats--analytics-logo-analysis-web-development-pack-design-illustrations-2821992.png" alt="">
-</div>

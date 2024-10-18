@@ -166,14 +166,15 @@ def edit(request,x):
     }
     return render(request, 'querys.html',{'key1':all_query,'data':my_data,'key2':edit_data})
 
-def update(request):
-        name1=request.POST['name']
+def update(request,x):
+        if request.method=="POST":
+            name1=request.POST['name']
         email1=request.POST['email']
         query1=request.POST['query']
 
         print(query1)
 
-        querydata=Query.objects.get(cust_email=email1)
+        querydata=Query.objects.get(id=x)
         querydata.cust_name=name1
         querydata.cust_email=email1
         querydata.cust_query=query1
