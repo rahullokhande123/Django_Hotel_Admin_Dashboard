@@ -1,101 +1,98 @@
-
 <style>
+  #table {
+    width: 80%;
+    margin: auto;
+  }
 
-    #table{
-        width: 80%;
-        margin: auto;
-    }
-    #user{
-        margin: 20px;
-        color: green;
-    }
-
+  #user {
+    margin: 20px;
+    color: green;
+  }
 </style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <div align="center" style="margin-top: 2%;margin-left: 75%;">
-      <a href="{% url 'logout' %}"><button style="margin-right: 10px;" type="button" class="btn btn-success">LogOut</button></a>
-    </div>
-    <div align="center" id="user">
-        <h1>{{data.nm}}</h1>
-    </div>
+<div align="center" style="margin-top: 2%;margin-left: 75%;">
+  <a href="{% url 'logout' %}"><button style="margin-right: 10px;" type="button"
+      class="btn btn-success">LogOut</button></a>
+</div>
+<div align="center" id="user">
+  <h1>{{data.nm}}</h1>
+</div>
+<div style="height: 100%;">
+  {% if key2 %}
 
-{% if key2 %}
+  <table class="table table-hover" id="table" border="2">
+    <thead>
+      <tr>
+        <th scope="col">S No.</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Query</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
 
-<table class="table table-hover" id="table" border="2">
-        <thead>
-          <tr>
-            <th scope="col">S No.</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Query</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-            
-          </tr>
-        </thead>
-        {% for i in key1 %}
+      </tr>
+    </thead>
+    {% for i in key1 %}
 
-        <tbody>
-          <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{i.id}}</td>
-            <td>{{i.cust_name}}</td>
-            <td>{{i.cust_email}}</td>
-            <td>{{i.cust_query}}</td>
-            <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
-            <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a></td>
-          </tr>
-          
-        </tbody>
-        {% endfor %}
-    </table>
+    <tbody>
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.id}}</td>
+        <td>{{i.cust_name}}</td>
+        <td>{{i.cust_email}}</td>
+        <td>{{i.cust_query}}</td>
+        <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
+        <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button
+              class="btn btn-outline-danger">Delete</button></a></td>
+      </tr>
 
-    {% comment %} ================================== Edit Form ===================================== {% endcomment %}
+    </tbody>
+    {% endfor %}
+  </table>
 
-    
-<div align="center" style="margin-top: 50px;">
-<form style="width: 26rem;" action="{% url 'update' %}" method="post">
-  {% csrf_token %}
-  <!-- Name input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-    <label class="form-label" for="form4Example1">Name</label>
-    <input type="text" value="{{key2.nm}}" name="name" id="form4Example1" readonly class="form-control" />
-    
+  {% comment %} ================================== Edit Form ===================================== {% endcomment %}
+
+
+  <div align="center" style="margin-top: 50px;">
+    <form style="width: 26rem;" action="{% url 'update' %}" method="post">
+      {% csrf_token %}
+      <!-- Name input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Name</label>
+        <input type="text" value="{{key2.nm}}" name="name" id="form4Example1" readonly class="form-control" />
+
+      </div>
+
+      <!-- Email input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form4Example2">Email address</label>
+        <input type="email" name="email" value={{key2.em}} id="form4Example2" readonly class="form-control" />
+
+      </div>
+
+      <!-- Message input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form4Example3">Message</label>
+        <textarea class="form-control" name="query" id="form4Example3" rows="4">{{key2.qu}}</textarea>
+
+      </div>
+
+      <!-- Checkbox -->
+      <div class="form-check d-flex justify-content-center mb-4">
+        <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
+        <label class="form-check-label" for="form4Example4">
+          Are you sure, you want to update
+        </label>
+      </div>
+
+      <!-- Submit button -->
+      <button data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Update My Query</button>
+    </form>
+
   </div>
-
-  <!-- Email input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-    <label class="form-label" for="form4Example2">Email address</label>
-    <input type="email" name="email" value={{key2.em}} id="form4Example2" readonly class="form-control" />
-    
-  </div>
-
-  <!-- Message input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-    <label class="form-label" for="form4Example3">Message</label>
-    <textarea class="form-control" name="query" id="form4Example3" rows="4">{{key2.qu}}</textarea>
-    
-  </div>
-
-  <!-- Checkbox -->
-  <div class="form-check d-flex justify-content-center mb-4">
-    <input
-      class="form-check-input me-2"
-      type="checkbox"
-      value=""
-      id="form4Example4"
-      checked
-    />
-    <label class="form-check-label" for="form4Example4">
-      Are you sure, you want to update
-    </label>
-  </div>
-
-  <!-- Submit button -->
- <button data-mdb-ripple-init  class="btn btn-primary btn-block mb-4">Update My Query</button>
-</form>
 
 </div>
 
@@ -104,41 +101,46 @@
 
 <script>
   // Initialization for ES Users
-import { Input, Ripple, initMDB } from "mdb-ui-kit";
+  import { Input, Ripple, initMDB } from "mdb-ui-kit";
 
-initMDB({ Input, Ripple });
+  initMDB({ Input, Ripple });
 </script>
 
 {% else %}
 
 <table class="table table-hover" id="table" border="2">
-        <thead>
-          <tr>
-            <th scope="col">S No.</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Query</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-            
-          </tr>
-        </thead>
-        {% for i in key1 %}
+  <thead>
+    <tr>
+      <th scope="col">S No.</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Query</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
 
-        <tbody>
-          <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{i.id}}</td>
-            <td>{{i.cust_name}}</td>
-            <td>{{i.cust_email}}</td>
-            <td>{{i.cust_query}}</td>
-            <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
-            <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a></td>
-          </tr>
-          
-        </tbody>
-        {% endfor %}
-    </table>
+    </tr>
+  </thead>
+  {% for i in key1 %}
+
+  <tbody>
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{i.id}}</td>
+      <td>{{i.cust_name}}</td>
+      <td>{{i.cust_email}}</td>
+      <td>{{i.cust_query}}</td>
+      <td><a href="{% url 'edit' x=i.id %}"><button class="btn btn-outline-dark">Edit</button></a></td>
+      <td><a href="{% url 'delete' x=i.id y=i.cust_email %}"><button class="btn btn-outline-danger">Delete</button></a>
+      </td>
+    </tr>
+
+  </tbody>
+  {% endfor %}
+</table>
 
 {% endif %}
+
+<div align="center">
+  <img src="https://cdni.iconscout.com/illustration/premium/thumb/dashboard-illustration-download-in-svg-png-gif-file-formats--analytics-logo-analysis-web-development-pack-design-illustrations-2821992.png" alt="">
+</div>

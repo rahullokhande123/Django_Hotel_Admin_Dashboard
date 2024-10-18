@@ -11,9 +11,7 @@
         #perent_div{
             background-image: url(https://cdn.pixabay.com/photo/2019/07/29/05/56/resort-4369984_1280.jpg);
             background-repeat: no-repeat;
-            background-size: cover;
-            height: 750px;
-            
+            background-size: cover;  
         }
 
         #rgs_btn{
@@ -23,6 +21,7 @@
         }
         html {
         height: 100%;
+        overflow-x: hidden;
         }
 
 .login-box {
@@ -30,6 +29,7 @@
   top: 60%;
   left: 50%;
   width: 50%;
+  margin-bottom: 50px;
   
   padding: 40px;
   transform: translate(-50%, -50%);
@@ -99,6 +99,79 @@
         width: 50%;
         margin-left: 25%;
        }
+
+        html {
+          height: 100%;
+          }
+
+        .login-box {
+          position: absolute;
+          top: 65%;
+          left: 50%;
+          width: 50%;
+          
+          padding: 40px;
+          transform: translate(-50%, -50%);
+          background: rgba(40, 5, 62, 0.827);
+          box-sizing: border-box;
+          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.679);
+          border-radius: 10px;
+        }
+
+        .login-box h2 {
+          margin: 0 0 30px;
+          padding: 0;
+          color: #fff;
+          text-align: center;
+        }
+
+        .login-box .user-box {
+          position: relative;
+        }
+
+        .login-box .user-box input {
+          width: 100%;
+          padding: 10px 0;
+          font-size: 16px;
+          color: #fff;
+          margin-bottom: 30px;
+          border: none;
+          border-bottom: 1px solid #fff;
+          outline: none;
+          background: transparent;
+        }
+        .login-box .user-box label {
+          position: absolute;
+          top:0;
+          left: 0;
+          padding: 10px 0;
+          font-size: 16px;
+          color: #fff;
+          pointer-events: none;
+          transition: .5s;
+        }
+
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:valid ~ label {
+          top: -20px;
+          left: 0;
+          color: #03e9f4;
+          font-size: 12px;
+        }
+
+        .login-box form a {
+          position: relative;
+          display: inline-block;
+          padding: 10px 20px;
+          color: #03e9f4;
+          font-size: 16px;
+          text-decoration: none;
+          text-transform: uppercase;
+          overflow: hidden;
+          transition: .5s;
+          margin-top: 40px;
+          letter-spacing: 4px
+        }
     </style>
 </head>
 <body id="perent_div">
@@ -113,7 +186,7 @@
     </div>
 
   <!-- =================================================================================== -->
-    <div align="center" style="margin: 50px;">
+    <div align="center" style="margin: 50px;margin-bottom: 20px;">
         <h1>You Are Wellcome</h1>
         <h5>{{data.nm}}</h5>
     </div>
